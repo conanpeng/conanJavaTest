@@ -77,11 +77,30 @@ public class MapedFile {
         this.mappedByteBuffer.force();
         this.committedPosition.set(currentPosition);
         try {
-            clean(this.mappedByteBuffer);
+            //clean(this.mappedByteBuffer);
         } catch (Exception e) {
             e.printStackTrace();
         }
         //System.out.println("file commited ! "+this.committedPosition.get());
+    }
+
+
+    public void release(){
+        /*if(this.file != null){
+            this.file = null;
+        }*/
+
+        if(this.fileChannel != null){
+            try {
+                this.fileChannel.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        this.mappedByteBuffer = null;
+        System.gc();
+
     }
 
 
