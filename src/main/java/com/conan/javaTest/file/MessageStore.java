@@ -38,7 +38,6 @@ public class MessageStore {
             //TimeUnit.SECONDS.sleep(1);
         }
         //mapedFile.release();
-
         MapedFile.clean(mapedFile.getMappedByteBuffer());
         boolean s = mapedFile.getFile().delete();
         System.out.println("--->"+s);
